@@ -42,7 +42,7 @@ filterBtn.addEventListener("click", function () {
 // fetching data
 async function data() {
   try {
-    const response = await fetch("../Data/data.json");
+    const response = await fetch("./Data/data.json");
     const data = await response.json();
     return data;
   } catch (error) {
