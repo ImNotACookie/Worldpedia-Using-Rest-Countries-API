@@ -1,0 +1,139 @@
+.fade {
+  font-weight: 200;
+}
+
+.back {
+  margin-top: 40px;
+}
+
+.back a {
+  padding: 10px 25px;
+  background-color: var(--elements);
+  box-shadow: 0px 1px 5px 0px #00000052;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: 0.4s;
+}
+
+.back a:hover {
+  background-color: var(--text);
+  color: var(--elements);
+}
+
+.back a span {
+  margin-left: 10px;
+}
+
+.country {
+  margin-top: 60px;
+}
+
+.country .container {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 991px) {
+  .country .container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.country .container img {
+  flex-basis: 45%;
+  width: 40%;
+  height: auto;
+}
+
+@media (max-width: 991px) {
+  .country .container img {
+    width: 60%;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 650px) {
+  .country .container img {
+    width: 100%;
+  }
+}
+
+.country .container .country-info {
+  flex-basis: 45%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@media (max-width: 650px) {
+  .country .container .country-info {
+    width: 100%;
+  }
+}
+
+.country .container .country-info h2 {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.country .container .country-info .lists {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 991px) {
+  .country .container .country-info .lists {
+    flex-direction: column;
+  }
+}
+
+.country .container .country-info .lists div > span {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.country .container .country-info .lists .first-list {
+  margin-right: 100px;
+}
+
+@media (max-width: 991px) {
+  .country .container .country-info .lists .first-list {
+    margin-right: 0;
+    margin-bottom: 40px;
+  }
+}
+
+.country .container .country-info .border p {
+  font-weight: 600;
+}
+
+@media (max-width: 991px) {
+  .country .container .country-info .border p .parent {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+}
+
+.country .container .country-info .border p .parent span {
+  display: inline-block;
+  width: 70px;
+  font-size: 12px;
+  text-align: center;
+  box-shadow: 0px 1px 5px 0px #00000052;
+  padding: 8px 0;
+  background-color: var(--elements);
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.country .container .country-info .border p .parent span:first-child {
+  margin-left: 15px;
+}

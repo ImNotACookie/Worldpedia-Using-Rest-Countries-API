@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./Css/framework.css" />
+    <link rel="stylesheet" href="./Css/index.css" />
+    <title>Worldpedia | Using Rest Countries API</title>
+  </head>
+  <body>
+    <header class="first-head">
+      <div class="container">
+        <h1>Where in the world?</h1>
+        <button class="theme" id="theme">
+          <i class="fa-regular fa-moon"></i>
+          <span>Dark Mode</span>
+        </button>
+      </div>
+    </header>
+    <header class="second-head">
+      <div class="container">
+        <form id="search-form">
+          <button>
+            <i class="fa-solid fa-search"></i>
+          </button>
+          <input
+            type="search"
+            id="search"
+            placeholder="Search for a country..."
+            maxlength="100"
+          />
+        </form>
+        <div class="filters">
+          <button id="filter-btn">
+            <span>Filter by Region</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="filter">
+            <button data-region="Africa">Africa</button>
+            <button data-region="Americas">America</button>
+            <button data-region="Asia">Asia</button>
+            <button data-region="Europe">Europe</button>
+            <button data-region="Oceania">Oceania</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="data">
+      <div class="container" id="main-data"></div>
+    </section>
+    <script src="./Scripts/index.js" type="module"></script>
+    <script src="./Scripts/theme.js"></script>
+  </body>
+</html>
