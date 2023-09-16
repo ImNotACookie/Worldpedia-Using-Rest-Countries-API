@@ -54,7 +54,7 @@ const mainData = document.getElementById("main-data");
 
 function getDataInThePage(e) {
   let link = document.createElement("a");
-  link.href = `Worldpedia-Using-Rest-Countries-API/details.html?id=${e.alpha2Code}`;
+  link.href = `https://imnotacookie.github.io/Worldpedia-Using-Rest-Countries-API/details.html?id=${e.alpha2Code}`;
   link.target = "_blank";
   link.className = "country-link";
 
