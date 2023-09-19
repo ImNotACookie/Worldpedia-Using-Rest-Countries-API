@@ -122,7 +122,7 @@ searchForm.addEventListener("submit", function (e) {
     mainData.textContent = "";
     data().then((data) => {
       data.forEach((ele) => {
-        if (ele.name.toLowerCase().includes(inpVal.toLowerCase())) {
+        if (ele.name.trim().toLowerCase().includes(inpVal.trim().toLowerCase())) {
           getDataInThePage(ele);
           if (document.getElementById("message") !== null) {
             document.getElementById("message").remove();
