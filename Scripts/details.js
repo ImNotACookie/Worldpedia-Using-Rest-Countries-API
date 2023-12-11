@@ -33,9 +33,12 @@ async function data() {
   }
 }
 
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get("id");
+
 data().then((data) => {
   for (let i = 0; i < data.length; i++) {
-    if (location.search.split("=")[1] === data[i].alpha2Code) {
+    if (id === data[i].alpha2Code) {
       let country = createE("div", false, "country");
       let container = createE("div", false, "container");
       let img = document.createElement("img");
