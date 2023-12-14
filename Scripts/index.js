@@ -38,11 +38,15 @@ filterBtn.addEventListener("click", function () {
     this.children[1].style.rotate = "0deg";
   }
 });
+// generate function for infine scrolling
+function* generateMore(data) {
+  yield* data;
+}
 
 // fetching data
 async function data() {
   try {
-    const response = await fetch("Data/data.json");
+    const response = await fetch("/Data/data.json");
     const data = await response.json();
     return data;
   } catch (error) {
@@ -54,7 +58,7 @@ const mainData = document.getElementById("main-data");
 
 function getDataInThePage(e) {
   let link = document.createElement("a");
-  link.href = `https://imnotacookie.github.io/Worldpedia-Using-Rest-Countries-API/details.html?id=${e.alpha2Code}`;
+  link.href = `/details.html?id=${e.alpha2Code}`;
   link.target = "_blank";
   link.className = "country-link";
 
@@ -89,16 +93,52 @@ function getDataInThePage(e) {
 }
 
 data().then((data) => {
-  data.length = 8;
+  let more = generateMore(data);
 
-  data.forEach((e) => getDataInThePage(e));
+  for (let i = 0; i < Math.floor(window.innerHeight / 80); i++) {
+    let generateCountry = more.next().value;
+    getDataInThePage(generateCountry);
+  }
+
+  function generateMoreCountries() {
+    if (
+      window.innerHeight + window.scrollY >=
+      document.body.offsetHeight - 200
+    ) {
+      for (let i = 0; i < 8; i++) {
+        let generateCountry = more.next();
+        if (generateCountry.done) {
+          if (document.getElementById("end") !== null) return;
+          const end = createE(
+            "h1",
+            "You Reached The End Of The Page",
+            null,
+            "end"
+          );
+          end.style.textAlign = "center";
+          end.style.wordWrap = "break-word";
+          end.style.paddingBottom = "50px";
+          mainData.after(end);
+          return;
+        }
+        getDataInThePage(generateCountry.value);
+      }
+    }
+  }
+
+  document.addEventListener("scroll", generateMoreCountries);
+  window.addEventListener("resize", generateMoreCountries);
 });
 
 const filter = document.querySelector(".filter");
 
 filter.addEventListener("click", function (e) {
   if (e.target !== this) {
-    mainData.textContent = "";
+    let mainDataNOW = document.getElementById("main-data");
+    console.log(mainDataNOW);
+    [...mainDataNOW.children].forEach((e) => {
+      e.remove();
+    });
     data().then((data) => {
       data.forEach((ele) => {
         if (ele.region === e.target.dataset.region) {
@@ -122,7 +162,9 @@ searchForm.addEventListener("submit", function (e) {
     mainData.textContent = "";
     data().then((data) => {
       data.forEach((ele) => {
-        if (ele.name.trim().toLowerCase().includes(inpVal.trim().toLowerCase())) {
+        if (
+          ele.name.trim().toLowerCase().includes(inpVal.trim().toLowerCase())
+        ) {
           getDataInThePage(ele);
           if (document.getElementById("message") !== null) {
             document.getElementById("message").remove();
