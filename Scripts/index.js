@@ -107,20 +107,7 @@ data().then((data) => {
     ) {
       for (let i = 0; i < 8; i++) {
         let generateCountry = more.next();
-        if (generateCountry.done) {
-          if (document.getElementById("end") !== null) return;
-          const end = createE(
-            "h1",
-            "You Reached The End Of The Page",
-            null,
-            "end"
-          );
-          end.style.textAlign = "center";
-          end.style.wordWrap = "break-word";
-          end.style.paddingBottom = "50px";
-          mainData.after(end);
-          return;
-        }
+        if (generateCountry.done) return;
         getDataInThePage(generateCountry.value);
       }
     }
