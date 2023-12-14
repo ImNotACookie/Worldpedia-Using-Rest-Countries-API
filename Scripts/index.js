@@ -92,6 +92,8 @@ function getDataInThePage(e) {
   mainData.appendChild(link);
 }
 
+let check = true;
+
 data().then((data) => {
   let more = generateMore(data);
 
@@ -101,13 +103,27 @@ data().then((data) => {
   }
 
   function generateMoreCountries() {
+    if (!check) return;
     if (
       window.innerHeight + window.scrollY >=
       document.body.offsetHeight - 200
     ) {
       for (let i = 0; i < 8; i++) {
         let generateCountry = more.next();
-        if (generateCountry.done) return;
+        if (generateCountry.done) {
+          if (document.getElementById("end") !== null) return;
+          const end = createE(
+            "h1",
+            "You Reached The End Of The Page",
+            null,
+            "end"
+          );
+          end.style.textAlign = "center";
+          end.style.wordWrap = "break-word";
+          end.style.paddingBottom = "50px";
+          mainData.after(end);
+          return;
+        }
         getDataInThePage(generateCountry.value);
       }
     }
@@ -121,6 +137,7 @@ const filter = document.querySelector(".filter");
 
 filter.addEventListener("click", function (e) {
   if (e.target !== this) {
+    check = false;
     let mainDataNOW = document.getElementById("main-data");
     console.log(mainDataNOW);
     [...mainDataNOW.children].forEach((e) => {
